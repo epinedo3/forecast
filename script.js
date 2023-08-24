@@ -2,13 +2,8 @@ let weatherdash ={
     apikey: "2c41f87d57f5c50ef705cb3a3eda46cb",
     searchHistory: [],
     fetchWeather: function () {
-        fetch(
-            "https://api.openweathermap.org/data/2.5/forecast?q=" 
-            + city 
-            + "&units=imperial&appid=" 
-            + this.apiKey
-        )
-            .then((Response) => response.json())
+        fetch("https://api.openweathermap.org/data/2.5/forecast?q="+city+"&units=imperial&appid="+this.apiKey)
+            .then((response) => response.json())
             .then((data) => this.displayWeather(data))
             .catch((error) => console.error(error));
     },
@@ -33,16 +28,14 @@ let weatherdash ={
         document.querySelector(".humidity").innerText ="Humidity:" + humidity + "%";
         document.querySelector(".wind").innerText ="Wind Speed:" + speed + "mph";
         document.querySelector(".card").classList.remove("loading");
-
-    },  
-
+ 
      //For loop for the next five days 
      for (let index = 1; index < 5; index++) {
         const dayData = data.list.find(
             (item) =>
             new Date(item.dt_txt).getHours() === 21 &&
             new Date(item.dt_txt).getDate() === new Date().getDate() + i
-        ),
+        )
         
         //Data for the next 5 days
         const { dt_txt } =dayData;
@@ -79,7 +72,7 @@ let weatherdash ={
             box.appendChild(box1);
             fiveDayForcast.appendChild(box);
         }
-    },
+    }}
 
     function search () {
         this.fetchWeather(document.querySelector(".search-bar").value);
@@ -90,7 +83,7 @@ let weatherdash ={
             const fiveDayForcast = document.querySelector("#five-day-forcast");
         fiveDayForcast.innerHTML = ``;
         }
-    },
+    }
 
     function  saveSearchHistory (city) {
         if(this.searchHistory.length >=7) {
@@ -98,7 +91,7 @@ let weatherdash ={
         }
         this.searchHistory.push(city);
         localStorage.setItem("searchHistory", JSON.stringify(this.searchHistory));
-    },
+    }
 
 document.querySelector(".search button").addEventListener("click", function(){
     event.preventDefault();
