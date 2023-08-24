@@ -1,13 +1,18 @@
+// Calling API
 let weatherdash ={
     apikey: "2c41f87d57f5c50ef705cb3a3eda46cb",
     searchHistory: [],
-    fetchWeather: function () {
-        fetch("https://api.openweathermap.org/data/2.5/forecast?q="+city+"&units=imperial&appid="+this.apiKey)
+    fetchWeather: function (city) {
+        const newName= document.getElementById("cityInput");
+        const cityName= document.getElementById("cityName");
+        cityName.innerHTML= "--"+newName.value+"--"
+        // fetch("https://api.openweathermap.org/data/2.5/forecast?q="+city+"&units=imperial&appid="+this.apiKey)
+        fetch("api.openweathermap.org/data/2.5/forecast?q='+newName.value+'&appid="+this.apikey)
             .then((response) => response.json())
             .then((data) => this.displayWeather(data))
             .catch((error) => console.error(error));
     },
-    // Function that provides all required data
+    // Function that gathers all required data
     displayWeather: function(data) {
         const { name} = data.city;
         const { dt } = data.list[0];
@@ -74,7 +79,7 @@ let weatherdash ={
         }
     }}
 
-    function search () {
+    function  userInfo() {
         this.fetchWeather(document.querySelector(".search-bar").value);
         const query = document.querySelector(".form-control").value;
         if (query !== this.lastQuery) {
