@@ -51,7 +51,7 @@ let weather = {
             const roundedWind = Math.round(speed);
             
             //Creates new cards for each day
-            const fiveDayForcast = document.querySelector("#five-day-forcast");
+            const fiveDayForecast = document.querySelector("#five-day-forecast");
             const box = document.createElement("div");
             box.classList.add("col-12", "col-md-2", "col-lg-2");
             box.setAttribute("style", "margin: auto;");
@@ -75,7 +75,7 @@ let weather = {
             box2.appendChild(box3);
             box1.appendChild(box2);
             box.appendChild(box1);
-            fiveDayForcast.appendChild(box);
+            fiveDayForecast.appendChild(box);
         }
     },
 
@@ -84,8 +84,8 @@ let weather = {
         if (query !== this.lastQuery) {
             this.lastQuery = query;
             this.fetchWeather(query);
-            const fiveDayForcast = document.querySelector("#five-day-forcast");
-        fiveDayForcast.innerHTML = ``;
+            const fiveDayForecast = document.querySelector("#five-day-forecast");
+        fiveDayForecast.innerHTML = ``;
         }
     },
 
@@ -107,8 +107,8 @@ let weather = {
             li.textContent = city;
             li.addEventListener("click" , () => {
                 this.fetchWeather(city);
-                const fiveDayForcast = document.querySelector("#five-day-forcast");
-                fiveDayForcast.innerHTML = ``;
+                const fiveDayForecast = document.querySelector("#five-day-forecast");
+                fiveDayForecast.innerHTML = ``;
             });
             searchHistoryList.appendChild(li);
         });
