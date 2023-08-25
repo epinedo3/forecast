@@ -3,12 +3,7 @@ let weather = {
     apiKey: "2c41f87d57f5c50ef705cb3a3eda46cb",
     searchHistory: [],
     fetchWeather: function (city) {
-        fetch(
-            "https://api.openweathermap.org/data/2.5/forecast?q=" 
-            + city 
-            + "&units=imperial&appid=" 
-            + this.apiKey
-        )          
+        fetch("https://api.openweathermap.org/data/2.5/forecast?q="+city+"&units=imperial&appid="+this.apiKey)          
             .then((response) => response.json())
             .then((data) => this.displayWeather(data))
             .catch((error) => console.error(error));
@@ -120,13 +115,13 @@ let weather = {
     },
 };
 
-//Adds a "Submit" button 
+//AddEventListener to a "Submit" button 
 document.querySelector('button[type="submit"]').addEventListener("click", function(event) {
     event.preventDefault();
     weather.search(document.querySelector(".form-control").value);
 });
 
-//Adds an "Enter" button 
+//AddEventListener to a "Enter" button 
 document.querySelector(".form-control").addEventListener("keyup", function(event){
     if (event.key == "Enter") {
         event.preventDefault();
@@ -139,5 +134,3 @@ weather.displaySearchHistory();
 
 //Uploads weather of Chicago by default
 weather.fetchWeather("Chicago");
-
-
